@@ -1,6 +1,6 @@
 const localStorageSimulator = require('../mocks/localStorageSimulator');
 const saveCartItems = require('../helpers/saveCartItems');
-
+// REQUISITO 10 PARTE 2 - OK
 localStorageSimulator('setItem');
 
 describe('4 - Teste a função saveCartItems', () => {

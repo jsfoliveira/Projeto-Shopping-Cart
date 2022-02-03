@@ -3,7 +3,7 @@ const { fetchItem } = require('../helpers/fetchItem');
 const item = require('../mocks/item');
 
 describe('2 - Teste a função fecthItem', () => {
-// REQUISITO 9 - FEITO
+// REQUISITO 9 - FEITO - OK
   it('Teste se fetchItem é uma função', async () => {
     expect(typeof fetchItem).toBe('function');
   });

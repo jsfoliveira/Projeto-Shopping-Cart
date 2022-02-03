@@ -36,7 +36,7 @@ function createCartItemElement({ sku, name, salePrice }) {
 }
 
 window.onload = () => {
-  // REQUISITO 1 PARTE 2
+  // REQUISITO 1 PARTE 2 - OK
   // RESOLUÇÃO: Percorri os results do produto computador e criei um novo objeto contendo o sku, name e image, esse sendo filho do elemento pai que contém a classe item.
   const computador = fetchProducts('computador');
   computador.then((data) => {
