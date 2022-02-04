@@ -50,10 +50,12 @@ function createCartItemElement({ sku, name, salePrice }) {
   ol.appendChild(createCartItemElement(objeto));
 };
 // REQUISITO 6 - PARTE 1 - FALTA TERMINAR
-// const apagaTudo = () => {
-//   const cartItem = document.querySelectorAll('.cart__item');
-//   cartItem.innerHTML = '';
-// };
+const apagaTudo = () => {
+  const cartItem = document.querySelectorAll('.cart__item');
+  cartItem.forEach((element) => {
+    element.remove();
+  });
+};
 
 // REQUISITO 1 - PARTE 2
 // RESOLUÇÃO: O conteúdo do results vai ser percorrido (que é um array de objetos), vai pegando o id, title e thumbnail de cada objeto. O createProductItemElement vai criar a section que vai armazenar os spans que vão conter todas essas informações.
@@ -69,6 +71,6 @@ window.onload = async () => {
   const btnAdd = document.querySelectorAll('.item__add');
   btnAdd.forEach((button) => button.addEventListener('click', carrinho));
   // REQUISITO 6 - PARTE 2 - FALTA TERMINAR
-  // const empty = document.querySelector('.empty-cart');
-  // empty.addEventListener('click', apagaTudo);
+  const empty = document.querySelector('.empty-cart');
+  empty.addEventListener('click', apagaTudo);
 };
