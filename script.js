@@ -49,7 +49,8 @@ function createCartItemElement({ sku, name, salePrice }) {
   const ol = document.querySelector('.cart__items');
   ol.appendChild(createCartItemElement(objeto));
 };
-// REQUISITO 6 - PARTE 1 - FALTA TERMINAR
+// REQUISITO 6 - PARTE 1
+// RESOLUÇÃO: Acessei o ol que armazena todas as li, através do cartItem. Percorri cada elemento e fui removendo.
 const apagaTudo = () => {
   const cartItem = document.querySelectorAll('.cart__item');
   cartItem.forEach((element) => {
@@ -70,7 +71,8 @@ window.onload = async () => {
   });
   const btnAdd = document.querySelectorAll('.item__add');
   btnAdd.forEach((button) => button.addEventListener('click', carrinho));
-  // REQUISITO 6 - PARTE 2 - FALTA TERMINAR
+  // REQUISITO 6 - PARTE 2
+  // RESOLUÇÃO: Acessei o botão 'Esvaziar carrinho' e adicionei um eventListener para ativar a função apagaTudo ao clicar nele.
   const empty = document.querySelector('.empty-cart');
   empty.addEventListener('click', apagaTudo);
 };
