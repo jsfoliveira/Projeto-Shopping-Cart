@@ -27,8 +27,41 @@ function createProductItemElement({ sku, name, image }) {
   return section;
 }
 
+// Seleciona o ID do item
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
+}
+
+// REQUISITO 5 - parte 1
+// Pegando os itens do carrinho e transformando em array.
+// function getItems() {
+//   const cartItem = document.querySelectorAll('.cart__item');
+//   // console.log(cartItem);
+//   // const arrayCartItem = Array.from(cartItem);
+//   // console.log(arrayCartItem);
+//   console.log(cartItem);
+//   return cartItem;
+// }
+
+// REQUISITO 5 - PARTE 1
+// Tive ajuda do colega Vinícius de Paula.
+// RESOLUÇÃO: Percorri com o forEach cada cart__item está no carrinho, acessei só o valor que tem no PRICE, mas a partir do $ e somando ao total
+function pegarPreco() {
+  let total = 0;
+  const cartItemsAll = document.querySelectorAll('.cart__item');
+  cartItemsAll.forEach((element) => {
+    // element.innerText vai mostrar o SKU, o name e o PRICE. O PRICE SERÁ "PRICE: $2396.06". Com o .split('PRICE: $')[1], vai pegar a string "PRICE: $2396.06" e vai dividir em substrings a partir dos dois pontos, por isso que tem que ser [1], porque vai começar do $2396.06, o elemento[0] é um espaço vazio com $, o segundo será 239.06.
+    const precoItens = element.innerText.split('PRICE: $')[1];
+    // essa parte
+    total += parseFloat(precoItens); 
+  });
+  return total;
+}
+// REQUISITO 5 - PARTE 2
+// RESOLUÇÃO: Estou adicionando os valores do lado do Total que está no carriho.
+function somarPrecos() {
+  const totalPrice = document.querySelector('.total-price');
+  totalPrice.innerText = pegarPreco();
 }
 
 // REQUISITO 3: Função que, ao clicar no li, apaga o li
@@ -37,9 +70,11 @@ function cartItemClickListener(event) {
 cartItems.removeChild(event.target);
 // REQUISITO 4 - Quando eu clicar no cart__item, que ele apague do localStorage.
 saveCartItems(cartItems.innerHTML);
+// REQUISITO 5 - Quando eu apagar o li, que apague seu preço também.
+somarPrecos();
 }
 
-// Função que cria os li 
+// Função que cria os li
 function createCartItemElement({ sku, name, salePrice }) {
   const li = document.createElement('li');
   li.className = 'cart__item';
@@ -53,11 +88,12 @@ function createCartItemElement({ sku, name, salePrice }) {
  const carrinho = async (event) => {
   const getSku = event.target.parentNode; // getSku quer retornar o conteúdo do primeiro filho do elemento pai do item__sku.
   const data = await fetchItem(getSkuFromProductItem(getSku));
-  console.log(data);
   const objeto = { sku: data.id, name: data.title, salePrice: data.price };
   cartItems.appendChild(createCartItemElement(objeto));
 // REQUISITO 4 - Quando eu clicar no cart__item, que ele salve do localStorage.
   saveCartItems(cartItems.innerHTML);
+// REQUISITO 5 - Que ao adicionar o produto no carrinho, que esse preço seja adicionado no total.
+  somarPrecos();
 };
 
 // REQUISITO 6 - PARTE 1
@@ -67,13 +103,15 @@ const apagarTudo = () => {
   cartItem.forEach((element) => {
     element.remove();
   });
+// REQUISITO 5 - quando eu remover o li, que seja removido também o preço.
+  somarPrecos();
 };
 
-// REQUISITO 4:  A função getSavedCartItems deve recuperar os itens do carrinho de compras do localStorage quando carregamos a página.
-// RESOLUÇÃO: Ao clicar em cada filho do elemento cartItems, que estão no carrinho e que etambém foram salvos no localstorage, vai ativar a função cartItemClickListener.
+// REQUISITO 4 -  A função getSavedCartItems deve recuperar os itens do carrinho de compras do localStorage quando carregamos a página.
+// RESOLUÇÃO: Ao clicar em cada filho do elemento cartItems, que estão no carrinho e que também foram salvos no localstorage, vai ativar a função cartItemClickListener.
 const recuperarItem = () => {
   cartItems.innerHTML = getSavedCartItems();
-  console.log(cartItems); // vai aparecer os itens salvos no local storage
+  console.log(cartItems); // vão aparecer os itens salvos no local storage
   cartItems.childNodes.forEach((li) => li.addEventListener('click', cartItemClickListener));
 };
 
@@ -95,7 +133,7 @@ window.onload = async () => {
   // RESOLUÇÃO: Acessei o botão 'Esvaziar carrinho' e adicionei um eventListener para ativar a função apagaTudo ao clicar nele.
   const empty = document.querySelector('.empty-cart');
   empty.addEventListener('click', apagarTudo);
-
+  document.querySelector('.loading').remove(); // Requisito 7 parte 2 - remover o "...carregando". O requisito 7 parte 1 está no index.html.
   // REQUISITO 4
   recuperarItem();
 };
