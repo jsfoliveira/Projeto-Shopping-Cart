@@ -52,7 +52,7 @@ function pegarPreco() {
   cartItemsAll.forEach((element) => {
     // element.innerText vai mostrar o SKU, o name e o PRICE. O PRICE SERÁ "PRICE: $2396.06". Com o .split('PRICE: $')[1], vai pegar a string "PRICE: $2396.06" e vai dividir em substrings a partir dos dois pontos, por isso que tem que ser [1], porque vai começar do $2396.06, o elemento[0] é um espaço vazio com $, o segundo será 239.06.
     const precoItens = element.innerText.split('PRICE: $')[1];
-    // essa parte
+    // essa parte é a mesma coisa que total = total + precoItens. O parsefloat vai deixar tudo em decimal.
     total += parseFloat(precoItens); 
   });
   return total;
