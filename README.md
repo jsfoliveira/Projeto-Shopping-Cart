@@ -1,258 +1,76 @@
-### Termos de acordos
 
-Ao iniciar este projeto, você concorda com as diretrizes do Código de Ética e Conduta e do Manual da Pessoa Estudante da Trybe.
-
-# Boas vindas ao repositório do projeto de Carrinho de Compras!
-
-Você já usa o GitHub diariamente para desenvolver os exercícios, certo? Agora, para desenvolver os projetos, você deverá seguir as instruções a seguir. Fique atento a cada passo, e se tiver qualquer dúvida, nos envie por _Slack_! #vqv 🚀
-
-Aqui você vai encontrar os detalhes de como estruturar o desenvolvimento do seu projeto a partir desse repositório, utilizando uma branch específica e um _Pull Request_ para colocar seus códigos.
-
----
-
-## SUMÁRIO
-
-- [Habilidades](#habilidades)
-- [Entregáveis](#entregáveis)
-  - [O que será desenvolvido](#o-que-será-desenvolvido)
-    - [Protótipo do projeto](#protótipo-do-projeto)
-- [Data de entrega](#data-de-entrega)
-- [Desenvolvimento](#desenvolvimento)
-  - [Antes de começar a desenvolver:](#antes-de-começar-a-desenvolver)
-  - [Durante o desenvolvimento](#durante-o-desenvolvimento)
-    - [ESLint e Stylelint](#eslint-e-stylelint)
-    - [Cypress](#cypress)
-    - [Cobertura de testes](#cobertura-de-testes)
-    - [Pontos importantes para a implementação dos testes](#pontos-importantes-para-a-implementação-dos-testes)
-- [Requisitos do projeto](#requisitos-do-projeto)
-  - [API Shopping Cart](#api-shopping-cart)
-  - [Observações técnicas](#observações-técnicas)
-    - [1. Crie uma listagem de produtos](#1-crie-uma-listagem-de-produtos)
-    - [2. Adicione o produto ao carrinho de compras](#2-adicione-o-produto-ao-carrinho-de-compras)
-    - [3. Remova o item do carrinho de compras ao clicar nele](#3-remova-o-item-do-carrinho-de-compras-ao-clicar-nele)
-    - [4. Carregue o carrinho de compras através do **LocalStorage** ao iniciar a página](#4-carregue-o-carrinho-de-compras-através-do-localstorage-ao-iniciar-a-página)
-    - [5. Some o valor total dos itens do carrinho de compras](#5-some-o-valor-total-dos-itens-do-carrinho-de-compras)
-    - [6. Crie um botão para limpar o carrinho de compras](#6-crie-um-botão-para-limpar-o-carrinho-de-compras)
-    - [7. Adicione um texto de "carregando" durante uma requisição à API](#7-adicione-um-texto-de-carregando-durante-uma-requisição-à-api)
-    - [8. Desenvolva testes de no mínimo 25% de cobertura total e 100% da função `fetchProducts`](#8-desenvolva-testes-de-no-mínimo-25-de-cobertura-total-e-100-da-função-fetchproducts)
-    - [9. Desenvolva testes de no mínimo 50% de cobertura total e 100% da função `fetchItem`](#9-desenvolva-testes-de-no-mínimo-50-de-cobertura-total-e-100-da-função-fetchitem)
-    - [10. Desenvolva testes de no mínimo 75% de cobertura total e 100% da função `saveCartItems`](#10-desenvolva-testes-de-no-mínimo-75-de-cobertura-total-e-100-da-função-savecartitems)
-    - [11. Desenvolva testes para atingir 100% de cobertura total e 100% da função `getSavedCartItems`](#11-desenvolva-testes-para-atingir-100-de-cobertura-total-e-100-da-função-getsavedcartitems)
-  - [Depois de terminar o desenvolvimento](#depois-de-terminar-o-desenvolvimento)
-  - [Revisando um pull request](#revisando-um-pull-request)
-- [Avisos finais](#avisos-finais)
-
----
-
-## Habilidades
-
-Nesse projeto, você será capaz de:
-
-- Fazer requisições a uma API *(Application Programming Interface)* do Mercado Livre;
-- Utilizar os seus conhecimentos sobre JavaScript, CSS e HTML;
-- Trabalhar com funções assíncronas;
-- Implementar testes unitários.
-
----
-
-# Entregáveis
-
-Para entregar o seu projeto você deverá criar um Pull Request neste repositório.
-
-Lembre-se que você pode consultar nosso conteúdo sobre [Git & GitHub](https://app.betrybe.com/course/fundamentals/git-github-e-internet/git-github-o-que-e-e-para-que-serve/82dcab41-249a-4738-8920-f0eb2cb91d1c) sempre que precisar!
-
-## O que será desenvolvido
-
-Nesse projeto vocês farão um **carrinho de compras** totalmente dinâmico! E o melhor: consumindo dados diretamente de uma **API!** Isso mesmo. Da sigla em inglês _Application Programming Interface_, uma API é um ponto de contato na internet com determinado serviço. Através de **requisições HTTP** a essa API é possível interagir com ela da forma como quem a criou planejou. Aqui usaremos a API do Mercado Livre para buscarmos produtos à venda.
-
-### Protótipo do projeto
-
-Seu projeto deve ter o comportamento parecido com o do gif abaixo quando finalizado, **não se preocupe em replicar o visual, o gif so ilustra o comportamento**:
-
-![Project Gif](./prototipo.gif)
-
----
-
-# Data de entrega
-
-  - Projeto individual;
-  - Serão `4` dias de projeto.
-  - Data de entrega para avaliação final do projeto: `14/02/2022 - 14:00h`.
-
----
-
-# Desenvolvimento
-
-⚠️ É importante que seus arquivos tenham exatamente estes nomes! ⚠️
-
-O seu Pull Request deverá conter os arquivos `index.html`, `style.css` e `script.js`, que conterão seu código HTML, CSS e JavaScript, respectivamente. Assim como, a implementação dos arquivos da pasta `helpers` e `tests`, que conterão seus códigos JavaScript e testes unitários, respectivamente.
-
-Caso você faça o download de bibliotecas externas, utilize o diretório `libs` (a partir da raiz do projeto) para colocar os arquivos (*.css, *.js, etc...) baixados.
-
-Você pode adicionar outros arquivos se julgar necessário. Qualquer dúvida, procure a monitoria.
-
-## Antes de começar a desenvolver:
-
-1. Clone o repositório
-  * `git clone git@github.com:tryber/sd-019-a-project-shopping-cart.git`.
-  * Entre na pasta do repositório que você acabou de clonar:
-    * `cd sd-019-a-project-shopping-cart`
-
-2. Instale as dependências e inicialize o projeto
-  * Instale as dependências:
-    * `npm install`
-
-3. Crie uma branch a partir da branch `master`
-  * Verifique que você está na branch `master`
-    * Exemplo: `git branch`
-  * Se não estiver, mude para a branch `master`
-    * Exemplo: `git checkout master`
-  * Agora, crie uma branch onde você vai guardar os `commits` do seu projeto
-    * Você deve criar uma branch no seguinte formato: `nome-sobrenome-nome-do-projeto`
-    * Exemplo: `git checkout -b maria-silva-shopping-cart`
-
-4. Quando fizer mudanças, adicione-as ao _stage_ do Git e faça um `commit`
-  * Verifique que as mudanças ainda não estão no _stage_
-    * Exemplo: `git status` (devem aparecer listados os novos arquivos em vermelho)
-  * Adicione o novo arquivo ao _stage_ do Git
-      * Exemplo:
-        * `git add .` (adicionando todas as mudanças - _que estavam em vermelho_ - ao stage do Git)
-        * `git status` (devem aparecer listados os arquivos em verde)
-  * Faça o `commit` inicial
-      * Exemplo:
-        * `git commit -m 'iniciando o projeto. VAMOS COM TUDO :rocket:'` (fazendo o primeiro commit)
-        * `git status` (deve aparecer uma mensagem tipo _nothing to commit_ )
-
-5. Adicione a sua branch com o novo `commit` ao repositório remoto
-  * Usando o exemplo anterior: `git push -u origin maria-silva-shopping-cart`
-
-6. Crie um novo `Pull Request` _(PR)_
-  * Vá até a página de _Pull Requests_ do [repositório no GitHub](https://github.com/tryber/sd-019-a-project-shopping-cart/pulls)
-  * Clique no botão verde _"New pull request"_
-  * Clique na caixa de seleção _"Compare"_ e escolha a sua branch **com atenção**
-  * Clique no botão verde _"Create pull request"_
-  * Adicione uma descrição para o _Pull Request_, um título claro que o identifique, e clique no botão verde _"Create pull request"_
-  * **Não se preocupe em preencher mais nada por enquanto!**
-  * Volte até a [página de _Pull Requests_ do repositório](https://github.com/tryber/sd-019-a-project-shopping-cart/pulls) e confira que o seu _Pull Request_ está criado
-
----
-
-## Durante o desenvolvimento
-
-* Faça `commits` das alterações que você fizer no código regularmente;
-
-* Lembre-se de sempre após um ~~(ou alguns)~~ `commits` atualizar o repositório remoto (o famoso `git push`);
-
-* Os comandos que você utilizará com mais frequência são:
-
-  1. `git status` _(para verificar o que está em vermelho - fora do stage - e o que está em verde - no stage)_;
-
-  2. `git add` _(para adicionar arquivos ao stage do Git)_;
-
-  3. `git commit` _(para criar um commit com os arquivos que estão no stage do Git)_;
-
-  4. `git push -u nome-da-branch` _(para enviar o commit para o repositório remoto na primeira vez que fizer o `push` de uma nova branch)_;
-
-  5. `git push` _(para enviar o commit para o repositório remoto após o passo anterior)_.
-
----
-
-### ESLint e Stylelint
-
-Para garantir a qualidade do código, vamos utilizar neste projeto os linters `ESLint` e `Stylelint`.
-Assim o código estará alinhado com as boas práticas de desenvolvimento, sendo mais legível
-e de fácil manutenção! Para rodá-los localmente no projeto, execute os comandos abaixo:
-
-```bash
-  npm run lint
-  npm run lint:styles
-```
-
-Em caso de dúvidas, confira o material do course sobre [ESLint e Stylelint](https://app.betrybe.com/course/real-life-engineer/eslint).
-
-⚠️ Lembre-se que o seu projeto só será avaliado se estiver passando pelos _checks_ do **linter**.
-
----
-
-### Cypress
-
-Cypress é uma ferramenta de teste de front-end desenvolvida para a web.
-Você pode rodar o cypress localmente para verificar se seus requisitos estão passando, para isso execute um dos seguintes comandos:
-
-Para executar os testes apenas no terminal:
-
-```bash
-npm test
-```
-
-Para executar os testes e vê-los rodando em uma janela de navegador:
-
-```bash
-npm run cypress:open
-```
-
-***ou***
-
-```bash
-npx cypress open
-```
-
-Após executar um dos dois comandos acima, será aberta uma janela de navegador e então basta clicar no nome do arquivo de teste que quiser executar (project.spec.js), ou para executar todos os testes clique em Run all specs
-
-Você também pode assistir a [este](https://vimeo.com/539240375/a116a166b9) vídeo 😉🎙
-
-**Para rodar o cypress é preciso ter rodado o comando npm install anteriormente.**
-
----
-
-### Cobertura de testes
-
-Neste projeto, você irá implementar testes para quatro funções e, para avaliá-los, será utilizado a cobertura de testes.
-
-Essa cobertura avalia a eficácia dos testes implementados de acordo com os requisitos, determinando se cobrem o que foi pedido ou não.
-
-**Será testado apenas as quatros funções pedidas, e não toda a aplicação!**
-
-Conforme você for realizando os testes do projeto, a porcentagem da cobertura total irá aumentar. Para a cobertura total será avaliado 25%, 50%, 75%, e, por fim, 100% dos testes. Para cada função solicitada a cobertura de testes irá avaliar 100% das linhas da sua função.
-
-Para executar e acompanhar a implementação da sua cobertura de testes, rode o comando abaixo:
-
-```bash
-npm run test:coverage
-```
-
-Ao realizar o comando terá um resultado similar a este:
-
-![Cobertura de Testes](cobertura.png)
-
-Os destaques em amarelo fazem referência à cobertura total e os em verde demonstram a função do requisito desejado.
-
-Verifique com `npm test` se todos os itens da cobertura dos testes estão passando corretamente. **Atenção**: cuidado com eventuais falso-positivos!
-
-### Pontos importantes para a implementação dos testes
-
-Disponibilizamos a API simulada para você implementar seus testes. Isso significa que será possível simular o consumo de todos os dados da API dentro do seu ambiente de testes, de forma segura e independente de fatores externos que possam ocorrer.
-
-- As funções `fetchProducts` e `fetchItem` devem ser implementadas por você;
-- O `window.fetch` está definido em todos os testes, ou seja, será possível usar a função `fetch` dentro do seu ambiente de testes sem precisar importar ou instalar bibliotecas;
-- Utilize o `localStorage.getItem` e o `localStorage.setItem` normalmente no ambiente de teste, pois a simulação dele está pronta para ser chamada quando necessário.
-- Para nosso ambiente de testes, o `fetch` está limitado a atender somente a configuração da API referente ao projeto;
-- Deseja checar se uma função foi chamada? Ou se foi chamada com um argumento específico? Que tal dar uma olhada nos matchers da [documentação](https://jestjs.io/pt-BR/docs/expect#tohavebeencalled).
-
----
-
-# Requisitos do projeto
-
-## API Shopping Cart
-
-O [manual da API do Mercado Livre](https://developers.mercadolivre.com.br/pt_br/itens-e-buscas) contém muitas informações sobre ela. Utilizaremos alguns dos _endpoints_, e a forma de uso está detalhada no primeiro requisito.
-
-## Observações técnicas
-
-A seguir, estão listados os passos de como será a avaliação do seu projeto e todos os requisitos que devem ser cumpridos. Leia-os atentamente e siga à risca o que for pedido. Em particular, **atente-se para os nomes de classes que alguns elementos de seu projeto devem possuir**. O não cumprimento de um requisito, total ou parcialmente, impactará em sua avaliação.
-
----
-
+# 	:woman_technologist: Project Shopping Cart
+
+Esse projeto contém uma série de informações sobre o que eu aprendi aqui na Trybe ao longo do curso de desenvolvimento web da Trybe. <br>
+
+## :rocket:Começando
+Esse projeto foi proposto pelo curso de desenvolvimento web da Trybe.
+### Desenvolvimento
+Essa página foi feita usando JavaScript assíncrono, Jest, Fetch API e async/await
+### Commits
+Os commits foram feitos de acordo com os requisitos finalizados.
+### Branch
+Todo o projeto foi feita na branch '1juliana-oliveira-shopping-cart', isso por conta da exigência do curso.
+### Instalação
+Antes de realizar o projeto, precisei instalar as dependências usando npm install.
+### Visualização do projeto
+O projeto poderá ser visualizado através da extensão do Visual Studio Code que permite criar um servidor HTTP para servir páginas HTML, chamada Live Server.
+### Testes
+Os testes usando foram ESLint e Cypress, através dos **comandos**: <br>
+* npm run cypress:open <br>
+* npm run lint:styles
+### Autores
+Esse foi um projeto individual,que desenvolvido somente por Juliana Oliveira.
+### Ferramentas usadas
+Foi usado Visual Studio Code, além do Trello que auxiliou na organização das tarefas.
+### Framework usado
+Nenhum.
+### Informações importantes
+Os arquivos que têm as resoluções dos requisitos são:
+* index.html
+* style.css
+* script.js.
+
+## :footprints:Requisitos
+### Metodologia usada
+No trabalho do desenvolvimento de software a gente sempre tem prazos, muitas vezes os prazos são apertados.<br>
+Por outro lado, eu não quero criar algo que não entendo perfeitamente, como também fazer códigos rápidos pode levar a erros que podem demorar muito pra corrigir.<br>
+Por isso, usei e sempre uso o método Baby Steps, que é uma estratégia de abordar o desafio passo à passo, defensivamente.<br>
+Baby steps é um termo em inglês que quer dizer passos de bebê. Refere-se a fazer as coisas, quaisquer que sejam, devagar, com calma, passo a passo.
+#### :footprints:Requisito 1
+Adicione à página o título "Paleta de Cores".
+* O título deverá ficar dentro de uma tag h1 com o id denominado title;
+* O texto do título deve ser exatamente "Paleta de Cores".
+#### :footprints:Requisito 2
+Adicione à página uma paleta contendo quatro cores distintas.
+* A paleta de cores deve ser um elemento com id denominado color-palette, ao passo que cada cor individual contida na paleta de cores deve possuir a classe color;
+* A cor de fundo de cada elemento da paleta deverá ser a cor que o elemento representa. A única cor não permitida na paleta é a cor branca.;
+* Cada elemento da paleta de cores deverá ter uma borda preta, sólida e com 1 pixel de largura;
+* A paleta de cores deverá listar todas as cores disponíveis para utilização lado a lado, e deverá ser posicionada abaixo do título "Paleta de Cores";
+* A paleta de cores não deve conter cores repetidas.
+#### :footprints:Requisito 3
+Adicione a cor preta como a primeira cor da paleta de cores.
+#### :footprints:Requisito 4
+Adicione à página um quadro de pixels, com 25 pixels.
+* O quadro de "pixels" deve ter 5 elementos de largura e 5 elementos de comprimento;
+* O quadro de "pixels" deve possuir o id denominado pixel-board, ao passo que cada "pixel" individual dentro do quadro deve possuir a classe denominada pixel;
+* A cor inicial dos "pixels" dentro do quadro, ao abrir a página, deve ser branca;
+* O quadro de "pixels" deve aparecer abaixo da paleta de cores.
+#### :footprints:Requisito 5
+Faça com que cada elemento do quadro de pixels possua 40 pixels de largura, 40 pixels de altura e seja delimitado por uma borda preta de 1 pixel.
+#### :footprints:Requisito 6
+Defina a cor preta como cor inicial. Ao carregar a página, a cor preta já deve estar selecionada para pintar os pixels
+* O elemento da cor preta deve possuir, inicialmente, a classe selected;
+* Note que o elemento que deverá receber a classe selected deve ser um dos elementos que possuem a classe color, como especificado no requisito 2.
+#### :footprints:Requisito 7
+Clicar em uma das cores da paleta faz com que ela seja selecionada e utilizada para preencher os pixels no quadro.
+* A classe selected deve ser adicionada à cor selecionada na paleta, ao mesmo tempo em que é removida da cor anteriormente selecionada;
+* Somente uma das cores da paleta deve ter a classe selected de cada vez;
+* Note que os elementos que deverão receber a classe selected devem ser os mesmos elementos que possuem a classe color, como especificado no requisito 2.
+#### :footprints:Requisito 8
+Clicar em um pixel dentro do quadro após selecionar uma cor na paleta faz com que o pixel seja preenchido com a cor selecionada.
+#### :footprints:Requisito 9
+Crie um botão que, ao ser clicado, limpa o quadro preenchendo a cor de todos seus pixels com branco.
 ### 1. Crie uma listagem de produtos
 
 Este requisito pode ser feito em conjunto com o [requisito 8](#8-desenvolva-testes-de-no-mínimo-25-de-cobertura-total-e-100-da-função-fetchproducts) se você optar por aplicar TDD, para isso basta olhar as orientações do requisito 8 e aplicar o que é solicitado em conjunto.
